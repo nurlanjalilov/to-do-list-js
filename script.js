@@ -22,10 +22,6 @@ button.onclick = function() {
             current_tasks[i].onclick = function() {
                 this.parentNode.remove();
             }
-
-
-
-
         }
     }
 
@@ -34,25 +30,21 @@ button.onclick = function() {
 let check = true;
 
 sortbtn.addEventListener('click', (e) => {
-    const taskSort = [...document.querySelectorAll('.tasks > .task')].map((task) => task.textContent).sort();
-    var current_tasks = document.querySelectorAll(".delete");
-    for (var i = 0; i < current_tasks.length; i++) {
-        current_tasks[i].onclick = function() {
-            this.parentNode.remove();
-        }
-
-
-
-
-    }
+    const taskSort = [...document.querySelectorAll('.tasks > .task')].map((task) => task.innerHTML).sort();
 
     if (check) {
         check = false;
 
         document.querySelectorAll('.tasks > .task').forEach((item, i) => {
 
-            item.textContent = taskSort[i];
-            item.innerHTML += `<img src="/Group 77.svg" class="delete" alt="" onmouseover="this.src='/Group 70.svg';" onmouseout="this.src='/Group 77.svg';">`;
+            item.innerHTML = taskSort[i];
+            item.innerHTML+='';
+            var current_tasks = document.querySelectorAll(".delete");
+            for (var i = 0; i < current_tasks.length; i++) {
+            current_tasks[i].onclick = function() {
+                this.parentNode.remove();
+            }
+        }
 
         });
 
@@ -63,12 +55,17 @@ sortbtn.addEventListener('click', (e) => {
         taskSort.reverse();
         document.querySelectorAll('.tasks > .task').forEach((item, i) => {
 
-            item.textContent = taskSort[i];
-            item.innerHTML += `<img src="/Group 77.svg" class="delete" alt="" onmouseover="this.src='/Group 70.svg';" onmouseout="this.src='/Group 77.svg';">`;
+            item.innerHTML = taskSort[i];
 
         });
         check = true;
-
+        var current_tasks = document.querySelectorAll(".delete");
+            for (var i = 0; i < current_tasks.length; i++) {
+            current_tasks[i].onclick = function() {
+                this.parentNode.remove();
+            }
+        }
+        
     }
 
 });
